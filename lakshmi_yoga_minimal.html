@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lakshmi Yoga Shala - Hatha Yoga com Stella Cunha</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.7;
+            color: #4a4a4a;
+            background: #fafafa;
+            font-weight: 300;
+        }
+
+        /* Paleta minimalista baseada no logotipo */
+        :root {
+            --primary-soft: #a78bfa;
+            --secondary-soft: #67e8f9;
+            --accent-light: #e0f2fe;
+            --text-light: #6b7280;
+            --white: #ffffff;
+            --off-white: #f8fafc;
+        }
+
+        /* Header minimalista */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--primary-soft);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 300;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-soft);
+        }
+
+        /* Hero minimalista */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.03) 0%, rgba(103, 232, 249, 0.03) 100%);
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--primary-soft);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            opacity: 0;
+            animation: fadeInUp 1.2s ease forwards;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeInUp 1.2s ease 0.3s forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-soft);
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 400;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(167, 139, 250, 0.3);
+            opacity: 0;
+            animation: fadeInUp 1.2s ease 0.6s forwards;
+            border: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(167, 139, 250, 0.4);
+        }
+
+        /* Seções minimalistas */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 4rem;
+            color: var(--primary-soft);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 1px;
+            background: var(--primary-soft);
+        }
+
+        /* Sobre a Professora */
+        .about {
+            background: var(--white);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--primary-soft);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary-soft), var(--secondary-soft));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            text-align: center;
+            opacity: 0.9;
+        }
+
+        /* Benefícios minimalistas */
+        .benefits {
+            background: var(--off-white);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            border-top: 2px solid var(--primary-soft);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .benefit-card h3 {
+            color: var(--primary-soft);
+            margin-bottom: 1rem;
+            font-weight: 400;
+            font-size: 1.1rem;
+        }
+
+        .benefit-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Metodologia minimalista */
+        .methodology {
+            background: var(--white);
+        }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .method-item {
+            background: var(--off-white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 3px solid var(--primary-soft);
+        }
+
+        .method-item h3 {
+            color: var(--primary-soft);
+            margin-bottom: 1rem;
+            font-weight: 400;
+            font-size: 1.1rem;
+        }
+
+        .method-item p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Depoimentos minimalistas */
+        .testimonials {
+            background: var(--off-white);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--primary-soft);
+            opacity: 0.3;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .testimonial-author {
+            font-weight: 400;
+            color: var(--primary-soft);
+            font-size: 0.9rem;
+        }
+
+        /* Preços minimalistas */
+        .pricing {
+            background: var(--white);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: var(--off-white);
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            position: relative;
+            border: 1px solid rgba(167, 139, 250, 0.1);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(167, 139, 250, 0.15);
+        }
+
+        .pricing-card.featured {
+            background: var(--white);
+            border: 2px solid var(--primary-soft);
+            box-shadow: 0 5px 20px rgba(167, 139, 250, 0.2);
+        }
+
+        .pricing-card h3 {
+            color: var(--primary-soft);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            font-size: 1.2rem;
+        }
+
+        .price {
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: var(--primary-soft);
+            margin-bottom: 1.5rem;
+        }
+
+        .price-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .price-features li {
+            padding: 0.7rem 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+        }
+
+        .price-features li:last-child {
+            border-bottom: none;
+        }
+
+        /* CTA Final minimalista */
+        .final-cta {
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.05), rgba(103, 232, 249, 0.05));
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .final-cta h2 {
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: var(--primary-soft);
+        }
+
+        .final-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .urgency {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            color: var(--primary-soft);
+            border-left: 3px solid var(--primary-soft);
+        }
+
+        /* Footer minimalista */
+        footer {
+            background: var(--white);
+            color: var(--text-light);
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+        }
+
+        footer h3 {
+            color: var(--primary-soft);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* WhatsApp minimalista */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-soft);
+            color: white;
+            border-radius: 50px;
+            padding: 15px 20px;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(167, 139, 250, 0.3);
+            z-index: 1000;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(167, 139, 250, 0.4);
+        }
+
+        /* Animações suaves */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            section {
+                padding: 4rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">Lakshmi Yoga Shala</a>
+            <ul class="nav-links">
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#beneficios">Benefícios</a></li>
+                <li><a href="#metodologia">Metodologia</a></li>
+                <li><a href="#precos">Preços</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Encontre sua paz interior</h1>
+            <p class="hero-subtitle">Uma hora de Hatha Yoga que transforma sua semana. Reconecte-se com sua essência através de práticas milenares com a professora Stella Cunha.</p>
+            <a href="#precos" class="cta-button">Iniciar Jornada</a>
+        </div>
+    </section>
+
+    <section id="sobre" class="about">
+        <div class="section-title">Sobre a Professora</div>
+        <div class="about-content">
+            <div class="about-image">
+                <p>Foto da Professora<br>Stella Cunha</p>
+            </div>
+            <div class="about-text">
+                <h3>Stella Cunha</h3>
+                <p>Dedicada ao estudo e prática do Hatha Yoga há anos, Stella Cunha acredita que a simplicidade é o caminho para a transformação verdadeira.</p>
+                <p>Cada aula é conduzida com cuidado, respeitando o ritmo individual de cada aluno, criando um espaço seguro para explorar corpo, mente e espírito.</p>
+                <p>Sua abordagem gentil e acolhedora convida você a descobrir o poder da presença e da respiração consciente.</p>
+                <p><strong>Formação:</strong> Hatha Yoga • Yoga Nidra • Meditação • Pranayama</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="beneficios" class="benefits">
+        <div class="section-title">Benefícios da Prática</div>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">🌸</div>
+                <h3>Tranquilidade Mental</h3>
+                <p>Cultive uma mente calma e clara através da meditação e respiração consciente.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🤍</div>
+                <h3>Equilíbrio Corporal</h3>
+                <p>Desenvolva força e flexibilidade de forma suave e respeitosa.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">✨</div>
+                <h3>Presença Plena</h3>
+                <p>Aprenda a estar completamente presente no momento atual.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🌙</div>
+                <h3>Relaxamento Profundo</h3>
+                <p>Experimente o poder restaurador do Yoga Nidra.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🧘‍♀️</div>
+                <h3>Autoconhecimento</h3>
+                <p>Conecte-se com sua essência mais verdadeira.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🌿</div>
+                <h3>Bem-estar Natural</h3>
+                <p>Cultive um estado natural de saúde e vitalidade.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="metodologia" class="methodology">
+        <div class="section-title">Nossa Abordagem</div>
+        <div class="method-grid">
+            <div class="method-item">
+                <h3>Meditação</h3>
+                <p>Momentos de silêncio e presença para centrar a mente.</p>
+            </div>
+            <div class="method-item">
+                <h3>Pranayamas</h3>
+                <p>Técnicas de respiração para equilibrar energia vital.</p>
+            </div>
+            <div class="method-item">
+                <h3>Asanas</h3>
+                <p>Posturas que harmonizam corpo e mente.</p>
+            </div>
+            <div class="method-item">
+                <h3>Mudras</h3>
+                <p>Gestos sagrados que canalizam energia sutil.</p>
+            </div>
+            <div class="method-item">
+                <h3>Yoga Nidra</h3>
+                <p>Relaxamento consciente que restaura profundamente.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="section-title">Experiências Compartilhadas</div>
+        <div class="testimonials-grid">
+            <div class="testimonial">
+                <p>A simplicidade e profundidade das aulas me trouxeram uma paz que eu não conhecia há anos.</p>
+                <div class="testimonial-author">— Maria Silva</div>
+            </div>
+            <div class="testimonial">
+                <p>Stella tem um dom especial para criar um ambiente acolhedor onde posso ser autêntica.</p>
+                <div class="testimonial-author">— João Santos</div>
+            </div>
+            <div class="testimonial">
+                <p>Cada aula é uma pequena pausa sagrada na correria do dia a dia.</p>
+                <div class="testimonial-author">— Ana Costa</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="precos" class="pricing">
+        <div class="section-title">Investimento em Você</div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Aula Experimental</h3>
+                <div class="price">R$ 120</div>
+                <ul class="price-features">
+                    <li>1 aula de 60 minutos</li>
+                    <li>Conhecer a metodologia</li>
+                    <li>Individual ou em grupo</li>
+                    <li>Todas as práticas incluídas</li>
+                    <li>Materiais fornecidos</li>
+                </ul>
+                <a href="#contato" class="cta-button">Experimentar</a>
+            </div>
+            <div class="pricing-card featured">
+                <h3>Pacote Mensal</h3>
+                <div class="price">R$ 600</div>
+                <ul class="price-features">
+                    <li>12 aulas no mês</li>
+                    <li>3 aulas por semana</li>
+                    <li>Individual ou em grupo</li>
+                    <li>Flexibilidade de horários</li>
+                    <li>Suporte via WhatsApp</li>
+                    <li>Material exclusivo</li>
+                </ul>
+                <a href="#contato" class="cta-button">Escolher Plano</a>
+            </div>
+            <div class="pricing-card">
+                <h3>Formas de Pagamento</h3>
+                <div class="price">💳</div>
+                <ul class="price-features">
+                    <li>💰 PIX (desconto especial)</li>
+                    <li>💳 Cartão de Crédito</li>
+                    <li>📱 Pagamento facilitado</li>
+                    <li>🔒 Transação segura</li>
+                </ul>
+                <a href="#contato" class="cta-button">Escolher Forma</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <h2>Sua paz interior espera por você</h2>
+        <p>Permita-se essa pausa sagrada. Cada respiração é uma oportunidade de recomeçar.</p>
+        <div class="urgency">
+            Vagas limitadas: máximo 8 pessoas por turma
+        </div>
+        <a href="#contato" class="cta-button">Reservar Minha Vaga</a>
+    </section>
+
+    <footer id="contato">
+        <h3>Contato</h3>
+        <p>WhatsApp: (21) 97296-9771</p>
+        <p>Email: stella.cunha@gmail.com</p>
+        <p>Endereço: Rua João Borges 240, casa 22</p>
+        <p>Bairro: Gávea - CEP: 22.541-100</p>
+        <p>Rio de Janeiro / RJ</p>
+        <p style="margin-top: 2rem;">© 2024 Lakshmi Yoga Shala. Todos os direitos reservados.</p>
+    </footer>
+
+    <a href="https://wa.me/5521972969771" class="whatsapp-float" target="_blank">
+        💬 WhatsApp
+    </a>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section:not(.hero)').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.8s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
